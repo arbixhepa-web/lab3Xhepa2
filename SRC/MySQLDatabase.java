@@ -1,3 +1,16 @@
+/**
+ * Project: Lab 3 Database CRUD
+ * Purpose Details: Customer model for MySQL and MongoDB operations
+ * Course: IST
+ * Author: Arbi Xhepa
+ * Date Developed: 06/01/2026
+ * Last Date Changed: 06/01/2026
+ * Rev: 1.0
+ */
+
+
+
+
 import java.sql.*;
 
 public class MySQLDatabase {
