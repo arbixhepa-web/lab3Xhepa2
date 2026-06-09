@@ -9,21 +9,66 @@
  */
 
 
+import java.util.ArrayList;
+
 public class MongoCRUD {
 
+    private ArrayList<Customer> customers = new ArrayList<>();
+
+    // CREATE
     public void create(Customer c) {
-        System.out.println("Mongo INSERT: " + c);
+        customers.add(c);
+        System.out.println("Mongo INSERT SUCCESS: " + c);
     }
 
+    // READ ALL
     public void read() {
-        System.out.println("Mongo READ all customers");
+        System.out.println("\nMongo READ ALL CUSTOMERS:");
+
+        if (customers.isEmpty()) {
+            System.out.println("No customers found.");
+            return;
+        }
+
+        for (Customer c : customers) {
+            System.out.println(c);
+        }
     }
 
-    public void update(Customer c) {
-        System.out.println("Mongo UPDATE: " + c);
+    // UPDATE
+    public void update(Customer updatedCustomer) {
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getId() == updatedCustomer.getId()) {
+                customers.set(i, updatedCustomer);
+                System.out.println("Mongo UPDATE SUCCESS: " + updatedCustomer);
+                return;
+            }
+        }
+
+        System.out.println("UPDATE FAILED: Customer not found.");
     }
 
+    // DELETE
     public void delete(int id) {
-        System.out.println("Mongo DELETE ID: " + id);
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getId() == id) {
+                System.out.println("Mongo DELETE SUCCESS: " + customers.get(i));
+                customers.remove(i);
+                return;
+            }
+        }
+
+        System.out.println("DELETE FAILED: Customer not found.");
+    }
+
+    // EXTRA: COUNT
+    public void count() {
+        System.out.println("TOTAL MONGO CUSTOMERS: " + customers.size());
+    }
+
+    // EXTRA: CLEAR ALL
+    public void clearAll() {
+        customers.clear();
+        System.out.println("ALL MONGO CUSTOMERS DELETED");
     }
 }
